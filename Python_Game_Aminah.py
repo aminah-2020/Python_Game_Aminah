@@ -123,6 +123,7 @@ def debris_update():
             level+=1
             additional_speed+=1
         score+= -5
+        sounds.explosion.play()
 
    
        
