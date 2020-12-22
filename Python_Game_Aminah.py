@@ -75,11 +75,11 @@ def junk_update():
             x_pos = randint(-150,-50)
             y_pos = randint(score_board_height, HEIGHT-junk.height)
             junk.topleft = (x_pos,y_pos)  
-        if (collision ==1):
+        if (collision==1):
+            score+=1
             if (score >= 20 and score%20 == 0):
                 level+=1
                 additional_speed+=1
-            score+=1
             sounds.collect_pep.play()
         
 #updating satellite's motions, collisions, and points.
@@ -97,10 +97,10 @@ def satellite_update():
         satellite.topright = (x_sat, y_sat)
 
     if collision == 1:
-        if (score >=20 and score%20 ==0):
-            level+=1
-            additional_speed+=1
         score+= -10
+        if (score >= 20 and score%20 == 0):
+                level+=1
+                additional_speed+=1
         sounds.explosion.play()
 
     
@@ -119,10 +119,10 @@ def debris_update():
         debris.topright = (x_deb, y_deb)
 
     if collision == 1:
-        if (score >=20 and score%20 ==0):
-            level+=1
-            additional_speed+=1
         score+= -5
+        if (score >= 20 and score%20 == 0):
+                level+=1
+                additional_speed+=1
         sounds.explosion.play()
 
    
@@ -158,31 +158,31 @@ def laser_update():
         #check for collisions
         if satellite.colliderect(laser) == 1:
             lasers.remove(laser)
-            if (score >=20 and score%20 ==0):
-                level+=1
             x_sat = randint (-500, -50)
             y_sat = randint (score_board_height, HEIGHT - satellite.height)
             satellite.topright = (x_sat, y_sat)
             score+= -10
+            if (score >=20 and score%20 ==0):
+                level+=1
             sounds.explosion.play
         if debris.colliderect(laser) == 1:
             lasers.remove(laser)
-            if (score >=20 and score%20 ==0):
-                level+=1
             x_deb = randint (-500, -50)
             y_deb = randint (score_board_height, HEIGHT - debris.height)
             debris.topright = (x_deb, y_deb)
-            score+= 5
+            score+=5
+            if (score >=20 and score%20 ==0):
+                level+=1
             sounds.explosion.play
         for junk in junks:
             if junk.colliderect(laser)== 1:
                 lasers.remove(laser)
-                if (score >=20 and score%20 ==0):
-                    level+=1
                 x_pos = randint(-150,-50)
                 y_pos = randint(score_board_height, HEIGHT-junk.height)
                 junk.topleft = (x_pos,y_pos)
                 score +=5
+                if (score >=20 and score%20 ==0):
+                level+=1
                 sounds.explosion.play
         
 
